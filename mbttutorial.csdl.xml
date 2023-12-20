@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="4.0"
+    xsi:schemaLocation="http://docs.oasis-open.org/odata/ns/edmx http://docs.oasis-open.org/odata/odata/v4.0/os/schemas/edmx.xsd
+                        http://docs.oasis-open.org/odata/ns/edm http://docs.oasis-open.org/odata/odata/v4.0/os/schemas/edm.xsd">
+    <edmx:Reference
+        Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Namespace="Org.OData.Core.V1" Alias="Core" />
+    </edmx:Reference>
+    <edmx:Reference
+        Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation" />
+    </edmx:Reference>
+    <edmx:Reference Uri="vocabularies/com.sap.cloud.server.odata.cache.v1.xml">
+        <edmx:Include Namespace="com.sap.cloud.server.odata.cache.v1" Alias="Cache"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="vocabularies/com.sap.cloud.server.odata.sql.v1.xml">
+        <edmx:Include Namespace="com.sap.cloud.server.odata.sql.v1" Alias="SQL"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="ns.mbt.tutorial"
+            Alias="Self">
+            <EntityType Name="Customer">
+                <Annotation Term="Core.Description" String="Customer entity type"/>
+                <Key>
+                    <PropertyRef Name="CustomerID" />
+                </Key>
+                <Property Name="CustomerID" Type="Edm.Int64" Nullable="false">
+                    <Annotation Term="Core.Description" String="Customer primary key"/>
+                </Property>
+                <Property Name="Name" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="HomeAddress" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="WorkAddress" Type="Edm.String" MaxLength="100" Nullable="true"/>
+                <Property Name="PlaceOfWork" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="DateOfBirth" Type="Edm.Date" Nullable="false">
+                    <Annotation Term="Core.Immutable"/>
+                </Property>
+            </EntityType>
+
+            <EntityType Name="User">
+                <Annotation Term="Core.Description" String="Remote user entity type"/>
+                <Annotation Term="Cache.HttpDestination" String="mbttutorial"/>
+                <Annotation Term="Cache.RefreshBy" String="loadAll"/>   
+                <Key>
+                    <PropertyRef Name="UserID" />
+                </Key>
+                <Property Name="UserID" Type="Edm.Int64" Nullable="false">
+                    <Annotation Term="Core.Description" String="User primary key"/>
+                </Property>
+                <Property Name="Name" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="100" Nullable="false"/>
+                <Annotation Term="Cache.LoadHandler">
+                    <Record>
+                        <PropertyValue Property="HttpRequest" String="GET /users"/>
+                        <PropertyValue Property="ResponseBody">
+                            <String>
+                                [
+                                    {
+                                        "id": "${entity.UserID}",
+                                        "name": "${entity.Name}",
+                                        "email": "${entity.Email}"
+                                    }
+                                ]
+                            </String>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </EntityType>
+            <EntityContainer Name="Ns_mbt_tutorialService">
+                <Annotation Term="SQL.CacheDatabase"/>
+                <Annotation Term="SQL.TrackChanges"/>
+                <EntitySet Name="Customers" EntityType="Self.Customer">
+                    <Annotation Term="Core.Description" String="Customers entity set"/>
+                </EntitySet>
+                <EntitySet Name="Users" EntityType="Self.User">
+                    <Annotation Term="Core.Description" String="Remote User entity set"/>
+                </EntitySet>
+            </EntityContainer>    
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

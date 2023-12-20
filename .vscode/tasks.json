@@ -1,0 +1,250 @@
+{
+      // See https://go.microsoft.com/fwlink/?LinkId=733558
+      // for the documentation about the tasks.json format
+      "version": "2.0.0",
+      "tasks": [
+          {
+              "label": "csdl-to-war",
+              "type": "shell",
+              "command": "${command:sap.mbt.sdk.path}/bin/csdl-to-war${command:sap.mbt.bat.sh}",
+              "args": [
+                "${workspaceFolder}/mbttutorial.csdl.xml",
+                "${workspaceFolder}",
+                "-workspace", "${workspaceFolder}",
+                "-application", "mbttutorial",
+                "-version", "1.0.0",
+                "-h2db",
+                // "-login", "BASIC",  // uncomment this line for Basic Authentication
+                "-local:server", "/Users/d055161/Server/apache-tomcat-9",
+                "-local:deploy", "ROOT.war",
+                "-vs:code",
+                "-local:run",
+                // "-cors:allow", "https://example.com", // uncomment out this line to enable cors
+                // "-csrf:token", // uncomment out this line to enable csrf token
+                "-console:log", // comment out this line for production deployment
+                "-log:trace" // comment out this line for production deployment
+              ],
+              "problemMatcher": [
+                  {
+                      "severity": "error",
+                      "pattern": {
+                          "regexp": "com\\.sap\\.xscript\\..*Exception: (...+):(\\d+) (.+)",
+                          "file": 1,
+                          "line": 2,
+                          "message": 3
+                      },
+                      "fileLocation": ["absolute"]
+                  },
+                  {
+                      "severity": "warning",
+                      "pattern": {
+                          "regexp": ".+ WARN .+ProxyCompiler.+ (...+):(\\d+) (.+)",
+                          "file": 1,
+                          "line": 2,
+                          "message": 3
+                      },
+                      "fileLocation": ["absolute"]
+                  }
+              ],
+              "group": {
+                    "kind": "build",
+                    "isDefault": true
+               }
+          },
+          {
+            "label": "csdl-to-war-nodeploy",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/csdl-to-war${command:sap.mbt.bat.sh}",
+            "args": [
+                "${workspaceFolder}/mbttutorial.csdl.xml",
+                "${workspaceFolder}",
+                "-workspace", "${workspaceFolder}",
+                "-application", "mbttutorial",
+                "-version", "1.0.0",
+                "-h2db",
+                // "-login", "BASIC",  // uncomment this line for Basic Authentication
+                // "-cors:allow", "https://example.com", // uncomment out this line to enable cors
+                // "-csrf:token", // uncomment out this line to enable csrf token
+                "-console:log", // comment out this line for production deployment
+                "-log:trace" // comment out this line for production deployment
+            ],
+            "problemMatcher": [
+                {
+                    "severity": "error",
+                    "pattern": {
+                        "regexp": "com\\.sap\\.xscript\\..*Exception: (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                },
+                {
+                    "severity": "warning",
+                    "pattern": {
+                        "regexp": ".+ WARN .+ProxyCompiler.+ (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                }
+            ]
+        },
+        {
+            // Debugging applications in Cloud Foundry from VSCODE might have poor performance, 
+            // and it is generally recommended to remote debug from SAP Business Application Studio.
+            "label": "csdl-to-war-debug",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/csdl-to-war${command:sap.mbt.bat.sh}",
+            "args": [
+                "${workspaceFolder}/mbttutorial.csdl.xml",
+                "${workspaceFolder}",
+                "-workspace", "${workspaceFolder}",
+                "-application", "mbttutorial",
+                "-version", "1.0.0",
+                "-h2db",
+                // "-login", "BASIC",  // uncomment this line for Basic Authentication
+                "-local:server", "/Users/d055161/Server/apache-tomcat-9",
+                "-local:deploy", "ROOT.war",
+                "-vs:code",
+                "-local:debug",
+                // "-cors:allow", "https://example.com", // uncomment out this line to enable cors
+                // "-csrf:token", // uncomment out this line to enable csrf token
+                "-console:log", // comment out this line for production deployment
+                "-log:trace" // comment out this line for production deployment
+            ],
+            "problemMatcher": [
+                {
+                    "severity": "error",
+                    "pattern": {
+                        "regexp": "com\\.sap\\.xscript\\..*Exception: (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                },
+                {
+                    "severity": "warning",
+                    "pattern": {
+                        "regexp": ".+ WARN .+ProxyCompiler.+ (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                }
+            ]
+        },
+        {
+            "label": "csdl-to-war-test",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/csdl-to-war${command:sap.mbt.bat.sh}",
+            "args": [
+                "${workspaceFolder}/mbttutorial.csdl.xml",
+                "${workspaceFolder}",
+                "-workspace", "${workspaceFolder}",
+                "-application", "mbttutorial",
+                "-version", "1.0.0",
+                // "-login", "BASIC",  // uncomment this line for Basic Authentication
+                "-local:server", "/Users/d055161/Server/apache-tomcat-9",
+                "-local:deploy", "ROOT.war",
+                "-vs:code",
+                "-local:run",
+                // "-cors:allow", "https://example.com", // uncomment out this line to enable cors
+                // "-csrf:token", // uncomment out this line to enable csrf token
+                "-h2db",
+                "-test:mode",
+                "-console:log", // comment out this line for production deployment
+                "-log:trace" // comment out this line for production deployment
+            ],
+            "problemMatcher": [
+                {
+                    "severity": "error",
+                    "pattern": {
+                        "regexp": "com\\.sap\\.xscript\\..*Exception: (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                },
+                {
+                    "severity": "warning",
+                    "pattern": {
+                        "regexp": ".+ WARN .+ProxyCompiler.+ (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                }
+            ]
+        },
+        {
+            "label": "csdl-to-sql",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/csdl-to-sql${command:sap.mbt.bat.sh}",
+            "args": [
+                "${workspaceFolder}/mbttutorial.csdl.xml",
+                "${workspaceFolder}/mbttutorial.sql",
+                "-application", "mbttutorial",
+                "-target", "hana"
+            ],
+            "problemMatcher": [
+                {
+                    "severity": "error",
+                    "pattern": {
+                        "regexp": "com\\.sap\\.xscript\\..*Exception: (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                },
+                {
+                    "severity": "warning",
+                    "pattern": {
+                        "regexp": ".+ WARN .+ProxyCompiler.+ (...+):(\\d+) (.+)",
+                        "file": 1,
+                        "line": 2,
+                        "message": 3
+                    },
+                    "fileLocation": ["absolute"]
+                }
+            ]
+        },
+        {
+            "label": "setup-mbt-license",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/btp-cf-setup${command:sap.mbt.bat.sh}",
+            "args": [
+                "mbt-license",
+                "mbttutorial",
+				"-cc"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "setup-mobile-app",
+            "type": "shell",
+            "command": "${command:sap.mbt.sdk.path}/bin/btp-cf-setup${command:sap.mbt.bat.sh}",
+            "args": [
+                "mobile-app",
+                "mbttutorial",
+				"-cc"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "open-api-docs",
+            "type": "shell",
+            "osx": { "command": "open" },
+            "linux": { "command": "xdg-open" },
+            "windows": { "command": "start" },
+            "args": [ "${command:sap.mbt.sdk.path}/javadocs/index.html"],
+            "problemMatcher": []
+        }
+      ]
+}

@@ -1,0 +1,82 @@
+[
+    {
+        "CustomerID": 101,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "PlaceOfWork": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "WorkAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "CustomerID": 102,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "XYZ",
+        "Name": "XYZ",
+        "PlaceOfWork": "XYZ",
+        "WorkAddress": null
+    },
+    {
+        "CustomerID": 103,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "PlaceOfWork": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "WorkAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "CustomerID": 104,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "XYZ",
+        "Name": "XYZ",
+        "PlaceOfWork": "XYZ",
+        "WorkAddress": "XYZ"
+    },
+    {
+        "CustomerID": 105,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "PlaceOfWork": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "WorkAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "CustomerID": 106,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "XYZ",
+        "Name": "XYZ",
+        "PlaceOfWork": "XYZ",
+        "WorkAddress": "XYZ"
+    },
+    {
+        "CustomerID": 107,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "PlaceOfWork": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "WorkAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "CustomerID": 108,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "XYZ",
+        "Name": "XYZ",
+        "PlaceOfWork": "XYZ",
+        "WorkAddress": "XYZ"
+    },
+    {
+        "CustomerID": 109,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "Name": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "PlaceOfWork": "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        "WorkAddress": "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    },
+    {
+        "CustomerID": 110,
+        "DateOfBirth": "2023-12-20",
+        "HomeAddress": "XYZ",
+        "Name": "XYZ",
+        "PlaceOfWork": "XYZ",
+        "WorkAddress": "XYZ"
+    }
+]
