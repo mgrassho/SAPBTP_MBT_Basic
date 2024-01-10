@@ -14,7 +14,7 @@ In order to work through this tutorial you need to locally install some tools:
 
 ## Task 1 - Project Setup
 
-In this task we will create a project completly from scratch.
+In this task we will create a project completely from scratch.
 Open a terminal and follow these steps:
 
 ```zsh
@@ -30,7 +30,7 @@ You will now be prompted for some input. Choose OData version 4. MBT supports ge
 
 ![Choose OData V4](./assets/task1_02.png)
 
-![Provide namepace](./assets/task1_03.png)
+![Provide namespace](./assets/task1_03.png)
 
 The freshly created CSDL file will throw an error as the Entity Container is empty. Copy the following content into the CSDL file to get rid of this error message.
 
@@ -84,17 +84,17 @@ First, notice the Reference tags. These references enable the mix-in of differen
 Then, we see a "Schema" tag including our first entity (EntityType) named "Customer". Besides the Property tags you can also see that one Property  is marked as the "Key".
 Each Property contains a Name, Type and additional elements as needed. We do not use Referential Constraints in this tutorial.
 
-The last part of the service model is the EntityContainer. Here all defined entites - in our case, just the Customer - are put into a set and annotated with a description.
+The last part of the service model is the EntityContainer. Here all defined entities - in our case, just the Customer - are put into a set and annotated with a description.
 
 In the next part, we will generate our first service implementation and test the service.
 
 ## Task 2 - Generating the task.json
 
-With our service model perpared, we will now create a task.json to define how the generator should translate our definition into code.
+With our service model prepared, we will now create a task.json to define how the generator should translate our definition into code.
 
 In VS Codes Command Palette, choose MBT: Create task.json file.
 
-You will be prompted for some input. You can basically choose whatever fits your needs and it is pretty self-explanatory. Anyhow, for this turorial we keep most default and basic inputs as follows:
+You will be prompted for some input. You can basically choose whatever fits your needs and it is pretty self-explanatory. Anyhow, for this tutorial we keep most default and basic inputs as follows:
 
 ![Choose Local Server](./assets/task2_01.png)
 
@@ -119,7 +119,7 @@ Anyhow, most important task is the csdl-to-war. This tasks invokes a cli tool th
 
 From the Command Palette choose "Tasks: Run task" and choose "csdl-to-war"
 
-MBT will now generate a Java EE project into your target directory, then downloads all the depencies, compiles your project starts your Tomcat in order to run it.
+MBT will now generate a Java EE project into your target directory, then downloads all the decencies, compiles your project starts your Tomcat in order to run it.
 
 As you can see in your Explorer view, you know have some new folders, such as "src", "logs", "sql" and some more.
 
@@ -185,7 +185,7 @@ As you can see, the code generator did generate more tables than just your custo
 
 Also interesting is the table "mbttutorial_xs_data_metrics_1_0". This table contains metrics, that will collect metering information during runtime of your service and provides usage analysis and indications for performance optimizations in production.
 
-There are other tables, which are internally beeing used to provide additional features. The more features we add to our CSDL via annotations, more tables will automatically appear here. Most often, you do not need to care about these and only concentrate with your entity related tables.
+There are other tables, which are internally being used to provide additional features. The more features we add to our CSDL via annotations, more tables will automatically appear here. Most often, you do not need to care about these and only concentrate with your entity related tables.
 
 Under `/src/main/java` you can find the generated source code. For each entity you have a handler and listener in the respective folder. For your Customer entity you got a `CustomerHandler.java` and a `CustomerListener.java` in the respective packages.
 
@@ -195,11 +195,11 @@ In the `CustomerListener.java`, you will find important methods, such as
 public void beforeSave(EntityValue entityValue)
 ```
 
-In this method, you can provide your custom code that will be executed whenever a Customer record will be created or updated. There are other methods to let you customize the serivce behavior.
+In this method, you can provide your custom code that will be executed whenever a Customer record will be created or updated. There are other methods to let you customize the service behavior.
 
 The service should run locally on <http://localhost:8080>. So let us test the service now.
 
-And please ignore the license check in the terminal. During developemnt, MBT is license free. For production through, you need a license.
+And please ignore the license check in the terminal. During development, MBT is license free. For production through, you need a license.
 
 ## Task 4 - Test the Service
 
@@ -207,7 +207,7 @@ Open your browser and navigate to <http://localhost:8080>. You will see service 
 
 Now, navigate to your Customer collection by visiting <http://localhost:8080/Customers>. Note, that even though we named our entity "Customer", the service is using "Customers". This is because of the EntitySet. The output may surprise you as well, as there is suddenly an empty HTML table with the Customer attributes as columns.
 
-The service understands, that when being accessed throug a browser (User Agent Header/Accept), it will provide an HTML output. If you choose to use curl (or other tools), you will get plain OData as expected.
+The service understands, that when being accessed through a browser (User Agent Header/Accept), it will provide an HTML output. If you choose to use curl (or other tools), you will get plain OData as expected.
 
 Let's try this on the Terminal. Open a new Terminal and try `curl http://localhost:8080` and it returns
 
@@ -217,7 +217,7 @@ Let's try this on the Terminal. Open a new Terminal and try `curl http://localho
 
 You can ask the service to provide JSON format in the browser as well. Just use `http://localhost:8080/Customers?$format=json`.
 
-The service can't provide any data, as we did not provide any. The database is empty at the momement.
+The service can't provide any data, as we did not provide any. The database is empty at the moment.
 
 Open the file `/src/main/resources/test-data/Customer.json` in VS Code. As you can see, the code generation already provided some test data and you can adapt as needed. The data here is only used while testing and will never be seen during production (see initial-data for data used in production). In order to see these information in our service, we need to tell the code, that it runs in test mode.
 
@@ -245,7 +245,7 @@ password=
 
 User and Password will be used in case of Basic Authentication needed by the backend. You may need to create a /http directory first.
 
-Next, we will create a new entity which reprents the remote data:
+Next, we will create a new entity which represents the remote data:
 
 ```xml
  <EntityType Name="User">
@@ -261,7 +261,7 @@ Next, we will create a new entity which reprents the remote data:
 </EntityType>
 ```
 
-We put this entity direcly beneth our existing `Customer`. At the moment, this would be a local entity - same as our Customer.
+We put this entity directly beneath our existing `Customer`. At the moment, this would be a local entity - same as our Customer.
 Next, we will add another vocabulary to our service definition in order to enable the caching feature. Let's add the needed Reference:
 
 ```xml
@@ -318,7 +318,7 @@ Lastly, we will add the remote `User` entity to our `EntitySet`. And enable the 
 </EntitySet>
 ```
 
-Adding the Caching mechanism is a breacking change in terms of data base schema evolution. Usually, you would just need to increase the major version number in the task.json to handle this. As we are in a dev only scenario, we will just drop the database.
+Adding the Caching mechanism is a breaking change in terms of data base schema evolution. Usually, you would just need to increase the major version number in the task.json to handle this. As we are in a dev only scenario, we will just drop the database.
 
 To do this, delete the H2 database under `$CATALINA_HOME` by removing all files starting with mbttutorial.
 
