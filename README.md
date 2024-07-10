@@ -22,17 +22,9 @@ Open a terminal and follow these steps:
     cd MBTProject
 ```
 
-Open this freshly created folder in VSCode now.
-Use the Command Palette to create a new CSDL file with the `MBT: New OData CSDL Document` command.
-You will now be prompted for some input. Choose OData version 4. MBT supports generation of both versions, provide namespace and other inputs and eventually choose a file name as depicted here:
-
-![Choose MBT New OData CSDL Command from palette](./assets/task1_01.png)
-
-![Choose OData V4](./assets/task1_02.png)
-
-![Provide namespace](./assets/task1_03.png)
-
-The freshly created CSDL file will throw an error as the Entity Container is empty. Copy the following content into the CSDL file to get rid of this error message.
+Open this freshly created folder in VSCode now. 
+Create an empty file called "mbttutorial.csdl.xml" and paste the following content into it.
+Save the file.
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -88,40 +80,20 @@ The last part of the service model is the EntityContainer. Here all defined enti
 
 In the next part, we will generate our first service implementation and test the service.
 
-## Task 2 - Generating the task.json
+Based on this file, we will now create an MBT project.
+Use the VS Code Command Palette to execute "MBT: Create Mobile Backend Server Project".
 
-With our service model prepared, we will now create a task.json to define how the generator should translate our definition into code.
+![Choose MBT: Create Moble Backend Server](./assets/task1_1.png)
 
-In VS Codes Command Palette, choose MBT: Create task.json file.
+This will open up a dialog. Please provide the path to the freshly created 'mbttutorial.csdl.xml' and provide an application name 'MBTBasic' as follows:
 
-You will be prompted for some input. You can basically choose whatever fits your needs and it is pretty self-explanatory. Anyhow, for this tutorial we keep most default and basic inputs as follows:
+![Project creation dialog](./assets/task1_2.png)
 
-![Choose Local Server](./assets/task2_01.png)
+Press OK.
 
-![Keep the default CATALINA_HOME](./assets/task2_02.png)
+## Task 2 - Understanding your project and working with your project
 
-![Provide an application name, such as mbttutorial](./assets/task2_03.png)
-
-![Enter application version. Follow semantic versioning pattern](./assets/task2_04.png)
-
-![Choose Java EE style for code generation](./assets/task2_05.png)
-
-![Keep default target folder](./assets/task2_07.png)
-
-In the last step you need to choose the mbttutorial.csdl.xml file we created in Task 1 and confirm.
-
-As a result, you will find a task.json file in your .vscode folder.
-Take a moment an examine the file in VS Code. You will find various new tasks that can now be executed. Many generation options are based on the input we just provided. You can change these input anytime if needed. For instance, when you moved your Tomcat installation location or you want to enable generation for another database.
-
-Anyhow, most important task is the csdl-to-war. This tasks invokes a cli tool that was installed as part of the VS Code plugin for MBT. It takes your csdl file as input and generates a complete service implementation out of it. So, let do this.
-
-## Task 3 - Generating code
-
-From the Command Palette choose "Tasks: Run task" and choose "csdl-to-war"
-
-MBT will now generate a Java EE project into your target directory, then downloads all the decencies, compiles your project starts your Tomcat in order to run it.
-
-As you can see in your Explorer view, you know have some new folders, such as "src", "logs", "sql" and some more.
+As you can see in your Explorer view, you know have some new files and folders, such as "src", "logs", "sql" and some more.
 
 Let's examine what has been generated under "sql". Open the file `mbttutorial_1_0.sql`.
 
@@ -202,6 +174,18 @@ The service should run locally on <http://localhost:8080>. So let us test the se
 And please ignore the license check in the terminal. During development, MBT is license free. For production through, you need a license.
 
 ## Task 4 - Test the Service
+
+In order to test your project locally, we nee to tell the MBT tooling where your local Tomcat is installed. This information needs to be added to the deploy-local.options file, which was generated during the earlier steps.
+
+Append the following to the 'deploy-local.options' file:
+
+```text
+-local:server <PATH_TO_YOUR_TOMCAT>/apache-tomcat-9
+```
+
+From the Command Palette choose "Tasks: Run task" and choose "preview-mobile-server".
+
+MBT will now compile your project, start your Tomcat and deploy your project to it.
 
 Open your browser and navigate to <http://localhost:8080>. You will see service description of your service providing you the information that there is collection called "Customer". According to the OData spec, you can also retrieve the full metadata of your service by browsing to <http://localhost:8080/$metadata>.
 
